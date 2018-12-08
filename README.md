@@ -1,4 +1,4 @@
-# curve_learner
+# Curve Learner
 An application for training ML models on annotated 1D signals (curves)
 
 ## Functionality
