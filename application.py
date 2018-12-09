@@ -22,7 +22,7 @@ def plot():
 
 @app.route("/data", methods=["GET", "POST"])
 def fetch_data():
-    """creates a new curve"""
+    """creates/saves a new curve"""
     if request.method == "GET":
         x = list(np.linspace(1, 100, 100))
         y = list(np.sin(x) + np.random.normal(size=100))
@@ -30,9 +30,10 @@ def fetch_data():
         # serve the plotting data as json
         return json.dumps(data)
     else:
+        # get data from client and store in DB
         data = request.get_json(force=True)
         print("*** returned JSON: ", data)
-        return ""
+        return "data saved!"
 
 
 if __name__ == "__main__":

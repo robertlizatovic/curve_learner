@@ -18,7 +18,10 @@ function get_data() {
 // push data to server via AJAX/jQuery
 function push_data(){
     console.log(plotDiv.data);
-    $.post("data", JSON.stringify(plotDiv.data));
+    $.post("data", JSON.stringify(plotDiv.data), function (response) {
+        // log the response
+        console.log(response);
+    }, "text");
 }
 
 // register callback functions
