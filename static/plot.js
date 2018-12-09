@@ -1,10 +1,7 @@
 // get the tag for inserting the plot
-var div = document.getElementById("plot");
+var plotDiv = document.getElementById("plot");
 
-// an empty object holding the data to plot
-//var plot_data = {};
-
-// get data from python via AJAX/JQuery
+// get data from server via AJAX/jQuery
 function get_data() {
     $.getJSON("data", function (data) {
         console.log("data obtained!");
@@ -14,9 +11,16 @@ function get_data() {
             plot_data[k] = v;
         })
         // plot the data
-        Plotly.react(div, [plot_data], {margin: {t: 0}})
+        Plotly.react(plotDiv, [plot_data], {margin: {t: 0}})
     })
 }
 
-// register callback on generate button
+// push data to server via AJAX/jQuery
+function push_data(){
+    console.log(plotDiv.data);
+    $.post("data", JSON.stringify(plotDiv.data));
+}
+
+// register callback functions
 $("#generate").on("click", get_data);
+$("#save").on("click", push_data);
